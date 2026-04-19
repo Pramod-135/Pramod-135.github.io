@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.full-screen-background {
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centered-box {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+}
+
+.welcome-heading h2 {
+  font-size: 1.6rem;
+  color: #5c4033;
+  margin-bottom: 5px;
+}
+
+.welcome-heading h1 {
+  font-size: 2.8rem;
+  color: #5c4033;
+  margin-bottom: 20px;
+}
+
+.small-info {
+  color: #666;
+  margin: 15px 0;
+}
+
+.small-info a {
+  color: #8b5a2b;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.small-info a:hover {
+  text-decoration: underline;
+}
+
+.field-group {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.field-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #444;
+}
+
+.field-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.main-button {
+  width: 100%;
+  padding: 12px;
+  background: #8b5a2b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  margin: 15px 0;
+  cursor: pointer;
+}
+
+.main-button:hover {
+  background: #6d4a22;
+}
+
+/* Extra links */
+.extra-text {
+  margin-top: 20px;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.extra-text a {
+  color: #8b5a2b;
+  text-decoration: none;
+}
+
+.extra-text a:hover {
+  text-decoration: underline;
+}

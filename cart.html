@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maestro - Cart</title>
+  <link rel="stylesheet" href="cart.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="container">
+      <h1 class="cafe-name">Maestro</h1>
+      <nav class="top-nav">
+        <a href="home.html" title="Home">
+          <span class="material-symbols-outlined">home</span>
+          <span class="nav-label">Home</span>
+        </a>
+        <a href="menu.html" title="Menu">
+          <span class="material-symbols-outlined">menu_book</span>
+          <span class="nav-label">Menu</span>
+        </a>
+        <a href="about.html" title="About Us">
+          <span class="material-symbols-outlined">info</span>
+          <span class="nav-label">About</span>
+        </a>
+        <a href="login.html" title="Login" id="nav-auth">
+          <span class="material-symbols-outlined" id="nav-auth-icon">login</span>
+          <span class="nav-label" id="nav-auth-label">Login</span>
+        </a>
+        <a href="cart.html" class="active" title="Cart">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          <span class="nav-label">Cart</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <div class="page-heading">
+      <h2>Your Cart</h2>
+      <p id="cart-count">0 items</p>
+    </div>
+
+    <div class="cart-container">
+      <div id="empty-cart" class="empty-cart">
+        <h3>Your cart is empty</h3>
+        <a href="menu.html" class="main-button">Browse Menu</a>
+      </div>
+
+      <div id="cart-items" class="cart-items"></div>
+
+      <div id="cart-summary" class="cart-summary" style="display: none;">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="subtotal">₹0</span>
+        </div>
+        <div class="summary-row">
+          <span>Delivery Fee</span>
+          <span>₹30</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total Amount</span>
+          <span id="total">₹0</span>
+        </div>
+        <button onclick="openCheckout()" class="main-button"
+          style="width: 100%; margin-top: 25px; padding: 15px; font-size: 1.1rem;">
+          Proceed to Checkout
+        </button>
+        <a href="menu.html" class="secondary-button"
+          style="display: block; text-align: center; margin-top: 15px;">
+          Continue Shopping
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════
+       CHECKOUT MODAL
+  ═══════════════════════════════ -->
+  <div class="modal-backdrop" id="checkoutBackdrop">
+    <div class="checkout-modal" id="checkoutModal">
+
+      <!-- Step 1: Payment Selection -->
+      <div id="step-payment">
+        <div class="modal-header">
+          <h3>Choose Payment</h3>
+          <button class="modal-close" onclick="closeCheckout()">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <p class="modal-subtext">How would you like to pay?</p>
+
+        <div class="payment-options">
+
+          <label class="payment-option" for="pay-upi">
+            <input type="radio" name="payment" id="pay-upi" value="upi" checked>
+            <div class="pay-card">
+              <span class="pay-icon">📱</span>
+              <div>
+                <strong>UPI</strong>
+                <p>GPay, PhonePe, Paytm</p>
+              </div>
+            </div>
+          </label>
+
+          <label class="payment-option" for="pay-cod">
+            <input type="radio" name="payment" id="pay-cod" value="cod">
+            <div class="pay-card">
+              <span class="pay-icon">💵</span>
+              <div>
+                <strong>Cash on Delivery</strong>
+                <p>Pay when order arrives</p>
+              </div>
+            </div>
+          </label>
+
+          <label class="payment-option" for="pay-card">
+            <input type="radio" name="payment" id="pay-card" value="card">
+            <div class="pay-card">
+              <span class="pay-icon">💳</span>
+              <div>
+                <strong>Credit / Debit Card</strong>
+                <p>Visa, Mastercard, Rupay</p>
+              </div>
+            </div>
+          </label>
+
+          <label class="payment-option" for="pay-wallet">
+            <input type="radio" name="payment" id="pay-wallet" value="wallet">
+            <div class="pay-card">
+              <span class="pay-icon">👜</span>
+              <div>
+                <strong>Mobile Wallet</strong>
+                <p>Amazon Pay, Airtel Money</p>
+              </div>
+            </div>
+          </label>
+
+        </div>
+
+        <!-- UPI sub-input -->
+        <div class="upi-field" id="upi-field">
+          <label for="upi-id">Enter UPI ID</label>
+          <input type="text" id="upi-id" placeholder="yourname@upi" />
+        </div>
+
+        <div class="modal-total-row">
+          <span>Total to pay</span>
+          <strong id="modal-total-display">₹0</strong>
+        </div>
+
+        <button class="main-button" style="width:100%; padding:14px; font-size:1.05rem;"
+          onclick="confirmPayment()">
+          Confirm & Place Order
+        </button>
+      </div>
+
+      <!-- Step 2: Success screen -->
+      <div id="step-success" style="display:none; text-align:center; padding: 10px 0 20px;">
+        <div class="success-icon">✅</div>
+        <h3 class="success-title">Order Placed!</h3>
+        <p class="success-msg" id="success-msg">Your order has been placed successfully.</p>
+        <div class="success-detail" id="success-detail"></div>
+        <a href="menu.html" class="main-button" style="display:inline-block; margin-top:24px;">
+          Back to Menu
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast-bar" id="toastBar"></div>
+
+  <script src="cart.js"></script>
+  <script>
+    /* ── Nav auth swap ── */
+    const user = localStorage.getItem('maestroUser');
+    if (user) {
+      const authLink        = document.getElementById('nav-auth');
+      const authIcon        = document.getElementById('nav-auth-icon');
+      const authLabel       = document.getElementById('nav-auth-label');
+      authLink.href         = 'profile.html';
+      authLink.title        = 'My Profile';
+      authIcon.textContent  = 'account_circle';
+      authLabel.textContent = 'Profile';
+    }
+
+    /* ── Checkout modal ── */
+    function openCheckout() {
+      // Block checkout if not logged in
+      if (!localStorage.getItem('maestroUser')) {
+        showToastBar('Please log in to place an order!', 'error');
+        return;
+      }
+
+      // Sync total display
+      const total = document.getElementById('total').textContent;
+      document.getElementById('modal-total-display').textContent = total;
+
+      // Reset to step 1
+      document.getElementById('step-payment').style.display = 'block';
+      document.getElementById('step-success').style.display = 'none';
+
+      document.getElementById('checkoutBackdrop').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCheckout() {
+      document.getElementById('checkoutBackdrop').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close on backdrop click
+    document.getElementById('checkoutBackdrop').addEventListener('click', function(e) {
+      if (e.target === this) closeCheckout();
+    });
+
+    // Show/hide UPI field based on selection
+    document.querySelectorAll('input[name="payment"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        document.getElementById('upi-field').style.display =
+          this.value === 'upi' ? 'block' : 'none';
+      });
+    });
+
+    function confirmPayment() {
+      const method = document.querySelector('input[name="payment"]:checked').value;
+
+      // Validate UPI ID if selected
+      if (method === 'upi') {
+        const upiVal = document.getElementById('upi-id').value.trim();
+        if (!upiVal || !upiVal.includes('@')) {
+          showToastBar('Please enter a valid UPI ID (e.g. name@upi)', 'error');
+          return;
+        }
+      }
+
+      const total = document.getElementById('total').textContent;
+      const methodLabels = {
+        upi:    '📱 UPI — ' + document.getElementById('upi-id').value.trim(),
+        cod:    '💵 Cash on Delivery',
+        card:   '💳 Credit / Debit Card',
+        wallet: '👜 Mobile Wallet'
+      };
+
+      // Show success step
+      document.getElementById('step-payment').style.display = 'none';
+      document.getElementById('success-msg').textContent =
+        `Thank you for ordering at Maestro! Your order is being prepared.`;
+      document.getElementById('success-detail').innerHTML =
+        `<p><strong>Payment:</strong> ${methodLabels[method]}</p>
+         <p><strong>Amount:</strong> ${total}</p>`;
+      document.getElementById('step-success').style.display = 'block';
+
+      // Clear cart
+      cart = [];
+      saveCart();
+      renderCart();
+    }
+
+    /* ── Toast bar (replaces alert) ── */
+    function showToastBar(message, type = 'success') {
+      const bar = document.getElementById('toastBar');
+      bar.textContent = message;
+      bar.className = 'toast-bar show ' + type;
+      setTimeout(() => bar.classList.remove('show'), 3000);
+    }
+  </script>
+
+</body>
+</html>

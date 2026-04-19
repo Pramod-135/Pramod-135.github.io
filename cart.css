@@ -1,0 +1,704 @@
+/* styles.css - Single CSS File for Maestro Cafe */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background: #fdfaf5;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* ==================== SHARED STYLES ==================== */
+
+.top-bar {
+  background: #5c4033;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.cafe-name {
+  color: white;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* ── Nav: icon-only by default, slide-reveal label on hover ── */
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  overflow: hidden;
+  transition: background 0.25s ease, color 0.25s ease, gap 0.3s ease, padding 0.3s ease;
+}
+
+.top-nav a:hover,
+.top-nav a.active {
+  background: white;
+  color: #5c4033;
+  gap: 7px;
+  padding: 8px 14px;
+}
+
+.top-nav .material-symbols-outlined {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.top-nav a:hover .material-symbols-outlined,
+.top-nav a.active .material-symbols-outlined {
+  transform: translateX(-2px);
+}
+
+/* Label hidden by default, slides + fades in on hover */
+.nav-label {
+  font-size: 0.92rem;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 0.35s ease, opacity 0.3s ease 0.05s;
+}
+
+.top-nav a:hover .nav-label,
+.top-nav a.active .nav-label {
+  max-width: 80px;
+  opacity: 1;
+}
+
+/* Buttons */
+.main-button {
+  background: #8b5a2b;
+  color: white;
+  border: none;
+  padding: 13px 30px;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.main-button:hover {
+  background: #6d4a22;
+  transform: translateY(-2px);
+}
+
+.secondary-button {
+  background: white;
+  color: #8b5a2b;
+  border: 2px solid #8b5a2b;
+  padding: 13px 30px;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s ease;
+}
+
+.secondary-button:hover {
+  background: #8b5a2b;
+  color: white;
+}
+
+/* Main Content */
+.main-content {
+  padding: 40px 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.page-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.page-heading h2 {
+  font-size: 2.4rem;
+  color: #5c4033;
+  margin-bottom: 10px;
+}
+
+.page-heading p {
+  font-size: 1.15rem;
+  color: #666;
+}
+
+/* ==================== MENU STYLES ==================== */
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.menu-item {
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.25s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-6px);
+}
+
+.menu-item img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+}
+
+.menu-item h3 {
+  font-size: 1.35rem;
+  color: #5c4033;
+  margin: 14px 0 6px;
+  padding: 0 14px;
+}
+
+.menu-item .description {
+  flex-grow: 1;
+  color: #666;
+  font-size: 0.97rem;
+  margin: 0 14px 12px;
+  padding: 0 14px;
+  line-height: 1.5;
+}
+
+.menu-item .price {
+  font-size: 1.4rem;
+  color: #8b5a2b;
+  font-weight: bold;
+  margin: 10px 0 15px;
+}
+
+.add-to-cart {
+  width: 85%;
+  margin: 0 auto 20px;
+  padding: 12px;
+  background: #8b5a2b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.add-to-cart:hover {
+  background: #6d4a22;
+  transform: translateY(-2px);
+}
+
+/* ==================== CART STYLES ==================== */
+
+.cart-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  gap: 15px;
+}
+
+.cart-item img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-info h3 {
+  color: #5c4033;
+  margin-bottom: 4px;
+  font-size: 1.1rem;
+}
+
+.cart-item-info p {
+  color: #888;
+  font-size: 0.92rem;
+}
+
+/* ── Quantity Controls ── */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fdf6ee;
+  border: 1.5px solid #e8d5c0;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+.qty-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: #8b5a2b;
+  color: white;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.2s ease, transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.qty-btn:hover {
+  background: #6d4a22;
+  transform: scale(1.1);
+}
+
+.qty-btn:active {
+  transform: scale(0.95);
+}
+
+.qty-value {
+  min-width: 22px;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #5c4033;
+}
+
+/* ── Item Total ── */
+.cart-item-total {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #8b5a2b;
+  min-width: 60px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── Remove Button ── */
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.remove-btn:hover {
+  color: #e74c3c;
+  background: #ffeaea;
+}
+
+/* Empty Cart */
+.empty-cart {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: #666;
+}
+
+.empty-cart h3 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #5c4033;
+}
+
+/* Order Summary */
+.cart-summary {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+.cart-summary h3 {
+  color: #5c4033;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #eee;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+}
+
+.summary-row.total {
+  font-weight: bold;
+  font-size: 1.3rem;
+  border-top: 2px solid #eee;
+  padding-top: 12px;
+  margin-top: 12px;
+}
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+@media (max-width: 768px) {
+
+  .top-nav a {
+    padding: 8px 10px;
+  }
+
+  .top-nav .material-symbols-outlined {
+    font-size: 24px;
+  }
+
+  /* Disable hover expand on mobile — icons only always */
+  .top-nav a:hover .nav-label,
+  .top-nav a.active .nav-label {
+    max-width: 0;
+    opacity: 0;
+  }
+
+  .top-nav a:hover,
+  .top-nav a.active {
+    gap: 0;
+    padding: 8px 10px;
+  }
+
+  .menu-grid {
+    gap: 20px;
+  }
+
+  .menu-item {
+    min-height: 420px;
+  }
+
+  .cart-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .cart-item {
+    flex-wrap: wrap;
+  }
+
+  .cart-item-info {
+    flex: 1 1 calc(100% - 110px);
+  }
+
+  .quantity-controls {
+    order: 3;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .cart-item-total {
+    order: 4;
+    flex: 1 1 auto;
+    text-align: center;
+    margin: 0;
+  }
+
+  .remove-btn {
+    order: 5;
+  }
+}
+
+/* ==================== CHECKOUT MODAL ==================== */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 20px;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.checkout-modal {
+  background: white;
+  border-radius: 18px;
+  padding: 32px 30px;
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  transform: translateY(30px);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-backdrop.open .checkout-modal {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.modal-header h3 {
+  font-size: 1.45rem;
+  color: #5c4033;
+  font-weight: 700;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.modal-close:hover {
+  color: #5c4033;
+  background: #f5ede6;
+}
+
+.modal-subtext {
+  color: #999;
+  font-size: 0.92rem;
+  margin-bottom: 20px;
+}
+
+/* Payment option tiles */
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.payment-option input[type="radio"] {
+  display: none;
+}
+
+.pay-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 2px solid #e8d8cc;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.payment-option input:checked + .pay-card {
+  border-color: #8b5a2b;
+  background: #fff8f2;
+}
+
+.pay-card:hover {
+  border-color: #c09070;
+}
+
+.pay-icon {
+  font-size: 1.7rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pay-card strong {
+  display: block;
+  font-size: 0.98rem;
+  color: #3a2218;
+  font-weight: 600;
+}
+
+.pay-card p {
+  font-size: 0.82rem;
+  color: #aaa;
+  margin: 0;
+}
+
+/* UPI input */
+.upi-field {
+  margin-bottom: 18px;
+}
+
+.upi-field label {
+  display: block;
+  font-size: 0.88rem;
+  color: #666;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.upi-field input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #e0d0c0;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.upi-field input:focus {
+  border-color: #8b5a2b;
+}
+
+/* Total row inside modal */
+.modal-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff4ec;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  font-size: 1rem;
+  color: #5c4033;
+}
+
+.modal-total-row strong {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #8b5a2b;
+}
+
+/* Success screen */
+.success-icon {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+}
+
+.success-title {
+  font-size: 1.6rem;
+  color: #5c4033;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.success-msg {
+  color: #666;
+  font-size: 0.97rem;
+  margin-bottom: 16px;
+}
+
+.success-detail {
+  background: #fdfaf5;
+  border-radius: 10px;
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.success-detail strong {
+  color: #5c4033;
+}
+
+/* ==================== TOAST BAR ==================== */
+
+.toast-bar {
+  position: fixed;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3a2218;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 500;
+  z-index: 1000;
+  white-space: nowrap;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  transition: bottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toast-bar.show {
+  bottom: 30px;
+}
+
+.toast-bar.error {
+  background: #c0392b;
+}

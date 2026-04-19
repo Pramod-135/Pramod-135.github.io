@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maestro - Create Account</title>
+  <link rel="stylesheet" href="create.css">
+</head>
+<body>
+
+  <div class="full-screen-background">
+
+    <div class="centered-box">
+
+      <div class="welcome-heading">
+        <h2>Join</h2>
+        <h1>Maestro</h1>
+      </div>
+
+      <p class="small-info">Already have an account? <a href="login.html">Login</a></p>
+
+      <form id="create-form">
+        <div class="field-group">
+          <label for="full-name">Full Name</label>
+          <input type="text" id="full-name" placeholder="John Doe" required>
+        </div>
+
+        <div class="field-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="example@gmail.com" required>
+        </div>
+
+        <div class="field-group">
+          <label for="pass">Password</label>
+          <input type="password" id="pass" placeholder="••••••••" required>
+        </div>
+
+        <div class="field-group">
+          <label for="confirm-pass">Confirm Password</label>
+          <input type="password" id="confirm-pass" placeholder="••••••••" required>
+        </div>
+
+        <p class="error-msg" id="error-msg"></p>
+
+        <button type="submit" class="main-button">Create Account</button>
+      </form>
+
+    </div>
+
+  </div>
+
+  <script>
+    document.getElementById('create-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name     = document.getElementById('full-name').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      const pass     = document.getElementById('pass').value;
+      const confirm  = document.getElementById('confirm-pass').value;
+      const errorMsg = document.getElementById('error-msg');
+
+      // Password match check
+      if (pass !== confirm) {
+        errorMsg.textContent = "Passwords do not match.";
+        return;
+      }
+
+      if (pass.length < 6) {
+        errorMsg.textContent = "Password must be at least 6 characters.";
+        return;
+      }
+
+      errorMsg.textContent = '';
+
+      // Save to localStorage (never store plain passwords in production!)
+      const userData = {
+        name:      name,
+        email:     email,
+        joinedAt:  new Date().toLocaleDateString('en-IN', {
+                     day: 'numeric', month: 'long', year: 'numeric'
+                   })
+      };
+
+      localStorage.setItem('maestroUser', JSON.stringify(userData));
+
+      // Redirect to profile page
+      window.location.href = 'profile.html';
+    });
+  </script>
+
+</body>
+</html>

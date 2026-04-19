@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background: #fdfaf5;
+}
+
+/* ==================== TOP BAR ==================== */
+
+.top-bar {
+  background: #5c4033;
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.cafe-name {
+  color: white;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* ── Nav: icon-only by default, slide-reveal label on hover ── */
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  overflow: hidden;
+  transition: background 0.25s ease, color 0.25s ease, gap 0.3s ease, padding 0.3s ease;
+}
+
+.top-nav a:hover,
+.top-nav a.active {
+  background: white;
+  color: #5c4033;
+  gap: 7px;
+  padding: 8px 14px;
+}
+
+.top-nav .material-symbols-outlined {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.top-nav a:hover .material-symbols-outlined,
+.top-nav a.active .material-symbols-outlined {
+  transform: translateX(-2px);
+}
+
+.nav-label {
+  font-size: 0.92rem;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 0.35s ease, opacity 0.3s ease 0.05s;
+}
+
+.top-nav a:hover .nav-label,
+.top-nav a.active .nav-label {
+  max-width: 80px;
+  opacity: 1;
+}
+
+/* ==================== MAIN CONTENT ==================== */
+
+.main-content {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.page-heading h2 {
+  font-size: 2.4rem;
+  color: #5c4033;
+  margin-bottom: 10px;
+}
+
+.page-heading p {
+  font-size: 1.15rem;
+  color: #666;
+}
+
+/* ==================== ABOUT SECTION ==================== */
+
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-text h3 {
+  color: #5c4033;
+  font-size: 1.6rem;
+  margin: 30px 0 12px;
+}
+
+.about-text p {
+  color: #555;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.about-text ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 15px 0;
+}
+
+.about-text ul li {
+  color: #555;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.about-text ul li::before {
+  content: "•";
+  color: #8b5a2b;
+  position: absolute;
+  left: 0;
+  font-size: 1.4rem;
+}
+
+.about-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .top-nav a {
+    padding: 8px 10px;
+  }
+
+  .top-nav .material-symbols-outlined {
+    font-size: 24px;
+  }
+
+  /* Disable hover expand on mobile */
+  .top-nav a:hover .nav-label,
+  .top-nav a.active .nav-label {
+    max-width: 0;
+    opacity: 0;
+  }
+
+  .top-nav a:hover,
+  .top-nav a.active {
+    gap: 0;
+    padding: 8px 10px;
+  }
+
+  .about-container {
+    flex-direction: column;
+  }
+}

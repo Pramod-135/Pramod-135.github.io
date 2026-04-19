@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maestro - About Us</title>
+  <link rel="stylesheet" href="about.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="container">
+      <h1 class="cafe-name">Maestro</h1>
+      <nav class="top-nav">
+        <a href="home.html" title="Home">
+          <span class="material-symbols-outlined">home</span>
+          <span class="nav-label">Home</span>
+        </a>
+        <a href="menu.html" title="Menu">
+          <span class="material-symbols-outlined">menu_book</span>
+          <span class="nav-label">Menu</span>
+        </a>
+        <a href="about.html" class="active" title="About Us">
+          <span class="material-symbols-outlined">info</span>
+          <span class="nav-label">About</span>
+        </a>
+        <a href="login.html" title="Login" id="nav-auth">
+          <span class="material-symbols-outlined" id="nav-auth-icon">login</span>
+          <span class="nav-label" id="nav-auth-label">Login</span>
+        </a>
+        <a href="cart.html" title="Cart">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          <span class="nav-label">Cart</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <div class="page-heading">
+      <h2>About Maestro</h2>
+      <p>A little story with love for good coffee & food</p>
+    </div>
+
+    <div class="about-container">
+
+      <div class="about-text">
+        <h3>Who We Are</h3>
+        <p>
+          Just Cafe started as a small dream to bring people together over 
+          a perfect cup of filter kaapi and hot snacks. 
+          We believe that good food and great conversations can make any day better.
+        </p>
+
+        <h3>What We Love</h3>
+        <ul>
+          <li>Authentic South Indian filter coffee</li>
+          <li>Traditional idli, dosa, vada & pongal</li>
+          <li>Spiced chai varieties - adrak, masala, honey</li>
+          <li>Freshly made snacks every morning</li>
+          <li>A warm, friendly place to relax</li>
+        </ul>
+
+        <h3>Our Promise</h3>
+        <p>
+          We use fresh ingredients, make everything with care, 
+          and always keep our space clean and welcoming. 
+          Whether you're here for a quick coffee or a long chat with friends — 
+          you're always welcome at Maestro.
+        </p>
+
+        <p style="margin-top: 30px; font-style: italic; color: #666;">
+          "One cup at a time, one smile at a time" ☕<br>
+          "One bite at a time, one smile at a time" 🍛
+        </p>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    const user = localStorage.getItem('maestroUser');
+    if (user) {
+      const authLink        = document.getElementById('nav-auth');
+      const authIcon        = document.getElementById('nav-auth-icon');
+      const authLabel       = document.getElementById('nav-auth-label');
+      authLink.href         = 'profile.html';
+      authLink.title        = 'My Profile';
+      authIcon.textContent  = 'account_circle';
+      authLabel.textContent = 'Profile';
+    }
+  </script>
+
+</body>
+</html>
