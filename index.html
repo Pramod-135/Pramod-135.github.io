@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maestro - Menu</title>
+  <link rel="stylesheet" href="menu.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="container">
+      <h1 class="cafe-name">Maestro</h1>
+      <div class="search-wrapper">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input type="text" id="search-input" class="search-input" placeholder="Search menu…" autocomplete="off" />
+        <button class="search-clear" id="search-clear" title="Clear">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <nav class="top-nav">
+        <a href="home.html" title="Home">
+          <span class="material-symbols-outlined">home</span>
+          <span class="nav-label">Home</span>
+        </a>
+        <a href="menu.html" class="active" title="Menu">
+          <span class="material-symbols-outlined">menu_book</span>
+          <span class="nav-label">Menu</span>
+        </a>
+        <a href="about.html" title="About Us">
+          <span class="material-symbols-outlined">info</span>
+          <span class="nav-label">About</span>
+        </a>
+        <a href="login.html" title="Login" id="nav-auth">
+          <span class="material-symbols-outlined" id="nav-auth-icon">login</span>
+          <span class="nav-label" id="nav-auth-label">Login</span>
+        </a>
+        <a href="cart.html" title="Cart">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          <span class="nav-label">Cart</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <script>
+    const user = localStorage.getItem('maestroUser');
+    if (user) {
+      const authLink        = document.getElementById('nav-auth');
+      const authIcon        = document.getElementById('nav-auth-icon');
+      const authLabel       = document.getElementById('nav-auth-label');
+      authLink.href         = 'profile.html';
+      authLink.title        = 'My Profile';
+      authIcon.textContent  = 'account_circle';
+      authLabel.textContent = 'Profile';
+    }
+  </script>
+
+  <!-- ══════════════════════════════════════
+       CATEGORY CAROUSEL
+  ══════════════════════════════════════ -->
+  <section class="category-carousel-section">
+    <div class="carousel-track-wrapper">
+      <button class="carousel-btn carousel-prev" id="carouselPrev">&#8249;</button>
+
+      <div class="carousel-track" id="carouselTrack">
+
+        <div class="carousel-slide" onclick="scrollToSection('beverages')">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600" alt="Beverages">
+          <div class="carousel-overlay">
+            <span class="carousel-emoji">☕</span>
+            <h4>Beverages</h4>
+          </div>
+        </div>
+
+        <div class="carousel-slide" onclick="scrollToSection('breakfast')">
+          <img src="https://shwetainthekitchen.com/wp-content/uploads/2022/01/Idli-Sambar.jpg" alt="Breakfast">
+          <div class="carousel-overlay">
+            <span class="carousel-emoji">🍽️</span>
+            <h4>Breakfast</h4>
+          </div>
+        </div>
+
+        <div class="carousel-slide" onclick="scrollToSection('dinner')">
+          <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600" alt="Dinner">
+          <div class="carousel-overlay">
+            <span class="carousel-emoji">🌙</span>
+            <h4>Dinner</h4>
+          </div>
+        </div>
+
+        <div class="carousel-slide" onclick="scrollToSection('cakes')">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600" alt="Cakes">
+          <div class="carousel-overlay">
+            <span class="carousel-emoji">🍰</span>
+            <h4>Cakes</h4>
+          </div>
+        </div>
+
+        <div class="carousel-slide" onclick="scrollToSection('icecream')">
+          <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600" alt="Ice Cream">
+          <div class="carousel-overlay">
+            <span class="carousel-emoji">🍨</span>
+            <h4>Ice Cream</h4>
+          </div>
+        </div>
+
+        <div class="carousel-slide" onclick="scrollToSection('cooldrinks')">
+          <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=600" alt="Cool Drinks">
+          <div class="carousel-overlay">
+            <span class="carousel-emoji">🍹</span>
+            <h4>Cool Drinks</h4>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="carousel-btn carousel-next" id="carouselNext">&#8250;</button>
+    </div>
+
+    <!-- Dot indicators -->
+    <div class="carousel-dots" id="carouselDots"></div>
+  </section>
+
+  <main class="main-content">
+
+    <div class="page-heading">
+      <h2>Our Menu</h2>
+      <p>Delicious coffee, chai, breakfast & more</p>
+    </div>
+
+    <p class="no-results" id="no-results" style="display:none;">
+      No items match "<span id="search-query"></span>"
+    </p>
+
+    <!-- BEVERAGES -->
+    <section class="menu-section" data-section="beverages" id="beverages">
+      <div class="section-header">
+        <h3 class="section-title">☕ Beverages</h3>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://static.toiimg.com/thumb/msid-124844227,imgsize-139036,width-400,resizemode-4/grated-vs-crushed-ginger-in-tea-the-secret-to-making-your-adrak-wali-chai-stronger-and-more-flavourful.jpg" alt="Ginger Chai">
+          <h3>Ginger Chai</h3>
+          <p class="description">Milk tea infused with fresh ginger root</p>
+          <p class="price">₹50</p>
+          <button class="add-to-cart" data-name="Ginger Chai (Adrak Chai)" data-price="50" data-image="https://static.toiimg.com/thumb/msid-124844227,imgsize-139036,width-400,resizemode-4/grated-vs-crushed-ginger-in-tea-the-secret-to-making-your-adrak-wali-chai-stronger-and-more-flavourful.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400" alt="Filter Coffee">
+          <h3>Filter Coffee</h3>
+          <p class="description">Traditional South Indian filter kaapi</p>
+          <p class="price">₹45</p>
+          <button class="add-to-cart" data-name="Filter Coffee" data-price="45" data-image="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=400" alt="Cappuccino">
+          <h3>Cappuccino</h3>
+          <p class="description">Frothy espresso with steamed milk</p>
+          <p class="price">₹150</p>
+          <button class="add-to-cart" data-name="Cappuccino" data-price="150" data-image="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=400">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://budleaf.com/wp-content/uploads/2023/04/How-to-make-masala-chai-2048x1356.jpeg" alt="Masala Chai">
+          <h3>Masala Chai</h3>
+          <p class="description">Spiced Indian tea</p>
+          <p class="price">₹40</p>
+          <button class="add-to-cart" data-name="Masala Chai" data-price="40" data-image="https://budleaf.com/wp-content/uploads/2023/04/How-to-make-masala-chai-2048x1356.jpeg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.livemint.com/img/2022/07/21/original/osmania-1_1658386091639.jpg" alt="Irani Chai">
+          <h3>Irani Chai</h3>
+          <p class="description">Extra-creamy brew with condensed milk</p>
+          <p class="price">₹45</p>
+          <button class="add-to-cart" data-name="Irani Chai" data-price="45" data-image="https://images.livemint.com/img/2022/07/21/original/osmania-1_1658386091639.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://static.toiimg.com/thumb/msid-115656721,imgsize-61370,width-400,resizemode-4/115656721.jpg" alt="Honey Tea">
+          <h3>Honey Tea</h3>
+          <p class="description">Naturally floral sweetness that mellows out the tea's tannins</p>
+          <p class="price">₹50</p>
+          <button class="add-to-cart" data-name="Honey Tea" data-price="50" data-image="https://static.toiimg.com/thumb/msid-115656721,imgsize-61370,width-400,resizemode-4/115656721.jpg">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BREAKFAST -->
+    <section class="menu-section" data-section="breakfast" id="breakfast">
+      <div class="section-header">
+        <h3 class="section-title">🍽️ Breakfast</h3>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://shwetainthekitchen.com/wp-content/uploads/2022/01/Idli-Sambar.jpg" alt="Idli with Sambar">
+          <h3>Idli with Sambar</h3>
+          <p class="description">Soft steamed rice cakes & chutney</p>
+          <p class="price">₹60</p>
+          <button class="add-to-cart" data-name="Idli with Sambar" data-price="60" data-image="https://shwetainthekitchen.com/wp-content/uploads/2022/01/Idli-Sambar.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://myfoodstory.com/wp-content/uploads/2025/08/Dosa-Recipe-2.jpg" alt="Masala Dosa">
+          <h3>Masala Dosa</h3>
+          <p class="description">Crispy dosa with potato filling</p>
+          <p class="price">₹70</p>
+          <button class="add-to-cart" data-name="Masala Dosa" data-price="70" data-image="https://myfoodstory.com/wp-content/uploads/2025/08/Dosa-Recipe-2.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://madhurasrecipe.com/wp-content/uploads/2021/12/poha_vada_2.jpg" alt="Medu Vada">
+          <h3>Medu Vada</h3>
+          <p class="description">Crispy lentil doughnut with chutney</p>
+          <p class="price">₹45</p>
+          <button class="add-to-cart" data-name="Medu Vada" data-price="45" data-image="https://madhurasrecipe.com/wp-content/uploads/2021/12/poha_vada_2.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://assets.bonappetit.com/photos/5f4fc816683772f4cb97e863/16:9/w_1920,c_limit/Basically-Poha-05.jpg" alt="Poha">
+          <h3>Poha</h3>
+          <p class="description">Flattened rice with spices and vegetables</p>
+          <p class="price">₹60</p>
+          <button class="add-to-cart" data-name="Poha" data-price="60" data-image="https://assets.bonappetit.com/photos/5f4fc816683772f4cb97e863/16:9/w_1920,c_limit/Basically-Poha-05.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://www.kingarthurbaking.com/sites/default/files/styles/featured_image_2x/public/2025-07/Aloo-Paratha-_2025_Lifestyle_H_2435.jpg?itok=-3Fg5HvN" alt="Aloo Paratha">
+          <h3>Aloo Paratha</h3>
+          <p class="description">Spiced potato-stuffed flatbread</p>
+          <p class="price">₹65</p>
+          <button class="add-to-cart" data-name="Aloo Paratha" data-price="65" data-image="https://www.kingarthurbaking.com/sites/default/files/styles/featured_image_2x/public/2025-07/Aloo-Paratha-_2025_Lifestyle_H_2435.jpg?itok=-3Fg5HvN">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://www.maggi.in/sites/default/files/srh_recipes/5f1439c480c484bacc2fcc13ac018173.jpg" alt="Upma">
+          <h3>Upma</h3>
+          <p class="description">Roasted semolina cooked with spices and vegetables</p>
+          <p class="price">₹55</p>
+          <button class="add-to-cart" data-name="Upma" data-price="55" data-image="https://www.maggi.in/sites/default/files/srh_recipes/5f1439c480c484bacc2fcc13ac018173.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://madhurasrecipe.com/wp-content/uploads/2025/09/MR-Chole-Bhature-1.jpg" alt="Chole Bhature">
+          <h3>Chole Bhature</h3>
+          <p class="description">Spicy chickpeas with fluffy fried bread</p>
+          <p class="price">₹80</p>
+          <button class="add-to-cart" data-name="Chole Bhature" data-price="80" data-image="https://madhurasrecipe.com/wp-content/uploads/2025/09/MR-Chole-Bhature-1.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://www.maggi.in/sites/default/files/srh_recipes/d1d74216ba5fa7ce5d72b8e121afe69f.jpg" alt="Dhokla">
+          <h3>Dhokla</h3>
+          <p class="description">Soft steamed gram flour cake with tangy flavor</p>
+          <p class="price">₹75</p>
+          <button class="add-to-cart" data-name="Dhokla" data-price="75" data-image="https://www.maggi.in/sites/default/files/srh_recipes/d1d74216ba5fa7ce5d72b8e121afe69f.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://i0.wp.com/www.pepperdelight.com/wp-content/uploads/2017/04/pepper-delight-chicken-stew-2.jpg?w=960&ssl=1" alt="Appam with Stew">
+          <h3>Appam with Stew</h3>
+          <p class="description">Soft lacy rice pancakes with coconut milk stew</p>
+          <p class="price">₹70</p>
+          <button class="add-to-cart" data-name="Appam with Stew" data-price="70" data-image="https://i0.wp.com/www.pepperdelight.com/wp-content/uploads/2017/04/pepper-delight-chicken-stew-2.jpg?w=960&ssl=1">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DINNER — all images from reliable Unsplash -->
+    <section class="menu-section" data-section="dinner" id="dinner">
+      <div class="section-header">
+        <h3 class="section-title">🌙 Dinner</h3>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400" alt="Dal Makhani">
+          <h3>Dal Makhani</h3>
+          <p class="description">Slow-cooked black lentils in a rich, buttery tomato gravy</p>
+          <p class="price">₹120</p>
+          <button class="add-to-cart" data-name="Dal Makhani" data-price="120" data-image="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400" alt="Paneer Butter Masala">
+          <h3>Paneer Butter Masala</h3>
+          <p class="description">Soft paneer in a velvety spiced tomato-cream sauce</p>
+          <p class="price">₹150</p>
+          <button class="add-to-cart" data-name="Paneer Butter Masala" data-price="150" data-image="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400" alt="Veg Biryani">
+          <h3>Veg Biryani</h3>
+          <p class="description">Fragrant basmati rice layered with spiced mixed vegetables</p>
+          <p class="price">₹130</p>
+          <button class="add-to-cart" data-name="Veg Biryani" data-price="130" data-image="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400" alt="Chana Masala">
+          <h3>Chana Masala</h3>
+          <p class="description">Bold, tangy chickpea curry with onion and tomato masala</p>
+          <p class="price">₹110</p>
+          <button class="add-to-cart" data-name="Chana Masala" data-price="110" data-image="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400" alt="Aloo Gobi">
+          <h3>Aloo Gobi</h3>
+          <p class="description">Dry stir-fried potato and cauliflower with turmeric and cumin</p>
+          <p class="price">₹100</p>
+          <button class="add-to-cart" data-name="Aloo Gobi" data-price="100" data-image="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAKES -->
+    <section class="menu-section" data-section="cakes" id="cakes">
+      <div class="section-header">
+        <h3 class="section-title">🍰 Cakes</h3>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://scientificallysweet.com/wp-content/uploads/2024/08/IMG_4344-er.jpg" alt="Chocolate Truffle Cake">
+          <h3>Chocolate Truffle Cake</h3>
+          <p class="description">Dense, velvety chocolate cake with a rich ganache coating</p>
+          <p class="price">₹600</p>
+          <button class="add-to-cart" data-name="Chocolate Truffle Cake" data-price="600" data-image="https://scientificallysweet.com/wp-content/uploads/2024/08/IMG_4344-er.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://thescranline.com/wp-content/uploads/2023/07/VICTORIAN-SPONGE-CAKE-WEB-03-1152x1536.jpg" alt="Vanilla Sponge Cake">
+          <h3>Vanilla Sponge Cake</h3>
+          <p class="description">Light, airy vanilla sponge layered with fresh cream frosting</p>
+          <p class="price">₹450</p>
+          <button class="add-to-cart" data-name="Vanilla Sponge Cake" data-price="450" data-image="https://thescranline.com/wp-content/uploads/2023/07/VICTORIAN-SPONGE-CAKE-WEB-03-1152x1536.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=400" alt="Red Velvet Cake">
+          <h3>Red Velvet Cake</h3>
+          <p class="description">Moist red velvet layers topped with smooth cream cheese frosting</p>
+          <p class="price">₹550</p>
+          <button class="add-to-cart" data-name="Red Velvet Cake" data-price="550" data-image="https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=400">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://www.piesandtacos.com/wp-content/uploads/2024/05/Strawberry-Cake-6-scaled.jpg" alt="Strawberry Cake">
+          <h3>Strawberry Cake</h3>
+          <p class="description">Fresh strawberry-infused cake with whipped cream and fruit slices</p>
+          <p class="price">₹500</p>
+          <button class="add-to-cart" data-name="Strawberry Cake" data-price="500" data-image="https://www.piesandtacos.com/wp-content/uploads/2024/05/Strawberry-Cake-6-scaled.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400" alt="Lemon Drizzle Cake">
+          <h3>Lemon Drizzle Cake</h3>
+          <p class="description">Zesty lemon sponge soaked in a tangy sugar glaze</p>
+          <p class="price">₹420</p>
+          <button class="add-to-cart" data-name="Lemon Drizzle Cake" data-price="420" data-image="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ICE CREAM -->
+    <section class="menu-section" data-section="icecream" id="icecream">
+      <div class="section-header">
+        <h3 class="section-title">🍨 Ice Cream</h3>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400" alt="Chocolate Ice Cream">
+          <h3>Chocolate Ice Cream</h3>
+          <p class="description">Rich dark chocolate ice cream with a creamy, smooth finish</p>
+          <p class="price">₹80</p>
+          <button class="add-to-cart" data-name="Chocolate Ice Cream" data-price="80" data-image="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400" alt="Vanilla Ice Cream">
+          <h3>Vanilla Ice Cream</h3>
+          <p class="description">Classic creamy vanilla with a delicate, sweet aroma</p>
+          <p class="price">₹70</p>
+          <button class="add-to-cart" data-name="Vanilla Ice Cream" data-price="70" data-image="https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=400" alt="Strawberry Ice Cream">
+          <h3>Strawberry Ice Cream</h3>
+          <p class="description">Fresh strawberry swirl ice cream with a fruity, bright flavour</p>
+          <p class="price">₹80</p>
+          <button class="add-to-cart" data-name="Strawberry Ice Cream" data-price="80" data-image="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=400">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=400" alt="Mango Kulfi">
+          <h3>Mango Kulfi</h3>
+          <p class="description">Traditional Indian frozen dessert bursting with fresh mango</p>
+          <p class="price">₹90</p>
+          <button class="add-to-cart" data-name="Mango Kulfi" data-price="90" data-image="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=400">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400" alt="Butterscotch Sundae">
+          <h3>Butterscotch Sundae</h3>
+          <p class="description">Scoops of butterscotch ice cream topped with caramel sauce and nuts</p>
+          <p class="price">₹110</p>
+          <button class="add-to-cart" data-name="Butterscotch Sundae" data-price="110" data-image="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- COOL DRINKS -->
+    <section class="menu-section" data-section="cooldrinks" id="cooldrinks">
+      <div class="section-header">
+        <h3 class="section-title">🍹 Cool Drinks</h3>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://i0.wp.com/annikaeats.com/wp-content/uploads/2024/03/DSC_1071.jpg?resize=1320%2C1980&ssl=1" alt="Mango Lassi">
+          <h3>Mango Lassi</h3>
+          <p class="description">Chilled blended mango and yogurt drink, sweet and refreshing</p>
+          <p class="price">₹80</p>
+          <button class="add-to-cart" data-name="Mango Lassi" data-price="80" data-image="https://i0.wp.com/annikaeats.com/wp-content/uploads/2024/03/DSC_1071.jpg?resize=1320%2C1980&ssl=1">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://sattvakitchen.com/wp-content/uploads/2024/05/SWEET-LIME-SODA-shutterstock_2309599743-copy-Copy-copy.jpg" alt="Fresh Lime Soda">
+          <h3>Fresh Lime Soda</h3>
+          <p class="description">Fizzy soda with freshly squeezed lime, served sweet or salted</p>
+          <p class="price">₹60</p>
+          <button class="add-to-cart" data-name="Fresh Lime Soda" data-price="60" data-image="https://sattvakitchen.com/wp-content/uploads/2024/05/SWEET-LIME-SODA-shutterstock_2309599743-copy-Copy-copy.jpg">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1638176066666-ffb2f013c7dd?w=400" alt="Rose Sharbat">
+          <h3>Rose Sharbat</h3>
+          <p class="description">Chilled rose-flavoured syrup drink with basil seeds and ice</p>
+          <p class="price">₹55</p>
+          <button class="add-to-cart" data-name="Rose Sharbat" data-price="55" data-image="https://images.unsplash.com/photo-1638176066666-ffb2f013c7dd?w=400">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="https://cdn.theliveinkitchen.com/wp-content/uploads/2020/07/28213449/Mojito-Mocktail-The-Live-In-Kitchen-4.jpg" alt="Virgin Mojito">
+          <h3>Virgin Mojito</h3>
+          <p class="description">Mint, lime, and soda over crushed ice — cool and zingy</p>
+          <p class="price">₹90</p>
+          <button class="add-to-cart" data-name="Virgin Mojito" data-price="90" data-image="https://cdn.theliveinkitchen.com/wp-content/uploads/2020/07/28213449/Mojito-Mocktail-The-Live-In-Kitchen-4.jpg">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="menu.js"></script>
+
+</body>
+</html>
